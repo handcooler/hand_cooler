@@ -8,8 +8,10 @@
 </div>
 
 <div class="container">
+  Search: <input ng-model="query">
+
   <ul>
-    <li data-ng-repeat="gem in gems">
+    <li data-ng-repeat="gem in gems | filter:query">
       {{gem.name}}
     </li>
   </ul>
