@@ -16,6 +16,10 @@ angular.module('handCoolerApp', [
         templateUrl: 'views/gems.html',
         controller: 'GemsCtrl'
       })
+      .when('/gems/:gemName', {
+        templateUrl: 'views/gem_detail.html',
+        controller: 'GemDetailCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
