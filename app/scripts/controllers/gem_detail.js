@@ -6,7 +6,7 @@ angular.module('handCoolerApp')
 //    $http.get('gems/tachikoma.json').success(function(data) {
 //      $scope.detail = data;
 //    });
-    var gemApi = 'https://rubygems.org/api/v1/gems/' + $routeParams.gemName + '.json';
+    var gemApi = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/gems/' + $routeParams.gemName + '.json';
     $http.get(gemApi).success(function(data) {
       $scope.detail = data;
     });
