@@ -12,11 +12,15 @@ angular.module('handCoolerApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/gems', {
+      .when('/gems/:query/', {
         templateUrl: 'views/gems.html',
         controller: 'GemsCtrl'
       })
-      .when('/gems/:gemName', {
+      .when('/gems/:query/:page', {
+        templateUrl: 'views/gems.html',
+        controller: 'GemsCtrl'
+      })
+      .when('/gem/:gemName', {
         templateUrl: 'views/gem_detail.html',
         controller: 'GemDetailCtrl'
       })
