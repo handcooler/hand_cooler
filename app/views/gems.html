@@ -14,14 +14,27 @@
 </div>
 
 <div class="container">
-  Search: <input ng-model="query">
-
-  <ul>
-    <li data-ng-repeat="gem in gems | filter:query">
-      {{gem.name}}
-    </li>
-  </ul>
+  <div class="gems">
+    Search for {{query}}, display {{gems.length}} gems.
+    <ul>
+      <li ng-repeat="gem in gems">
+        <a ng-href="#/gem/{{gem.name}}">
+          <span class="gem_name">{{gem.name}}</span> -
+          <span class="gem_version">{{gem.version}}</span> -
+          <span class="gem_info">{{gem.info}}</span>
+        </a>
+        <span class="gem_source_code_uri">
+          <span ng-if="gem.source_code_uri.length"><a ng-href="{{gem.source_code_uri}}">code</a></span>
+          <span ng-if="!gem.source_code_uri.length">code</span>
+        </span>
+      </li>
+    </ul>
+  </div>
 </div>
+
+<ul>
+  <li data-ng-repeat="(key, value) in gems">{{key}}: {{value}}</li>
+</ul>
 
 <div class="footer">
   <p>HandCooler :)</p>
