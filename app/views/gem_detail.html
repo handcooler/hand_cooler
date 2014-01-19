@@ -6,10 +6,12 @@
   </ul>
   <h3 class="text-muted">HandCooler</h3>
   <div class="input-append">
-    <input type="text" class="search-query" placeholder="Gem Name" ng-model="query">
-    <button type="submit" class="btn">
-      <i class="icon-search"></i>
-    </button>
+    <form ng-submit="doSearch()">
+      <input type="text" class="search-query" placeholder="Gem Name" ng-model="query">
+      <button type="submit" class="btn">
+        <i class="icon-search"></i>
+      </button>
+    </form>
   </div>
 </div>
 
