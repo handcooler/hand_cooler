@@ -10,7 +10,8 @@
     "angular-cookies": "1.2.9",
     "angular-sanitize": "1.2.9",
     "angular-route": "1.2.9",
-    "angular-strap": "~2.0.0"
+    "angular-strap": "~2.0.0",
+    "sass-bootstrap": "~3.0.2"
   },
   "devDependencies": {
     "angular-mocks": "1.2.9",
