@@ -4,7 +4,8 @@ angular.module('handCoolerApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'mgcrea.ngStrap'
 ])
   .config(function ($routeProvider) {
     $routeProvider
