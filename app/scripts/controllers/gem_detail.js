@@ -16,9 +16,16 @@ angular.module('handCoolerApp')
         return false;
       }
     };
+
+    $scope.fetchReadme = function(url) {
+      $http.get(url).success(function(data) {
+        return angular.element(data.find('#readme'))
+      });
+    };
     var gemApi = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/gems/' + $routeParams.gemName + '.json';
     $http.get(gemApi).success(function(data) {
       $scope.detail = data;
       $scope.sourceUrl = $scope.detectRepos(data);
+      $scope.readme = $scope.fetchReadme($scope.sourceUrl);
     });
   });
