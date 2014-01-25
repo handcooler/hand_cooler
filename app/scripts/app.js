@@ -5,7 +5,9 @@ angular.module('handCoolerApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'mgcrea.ngStrap'
+  'mgcrea.ngStrap',
+  'angulartics',
+  'angulartics.google.analytics'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -31,7 +33,7 @@ angular.module('handCoolerApp', [
   }).controller('HeaderCtrl', function ($scope, $location) {
     $scope.doSearch = function (query) {
       $location.path('/search/' + query);
-    }
+    };
   });
 //  .config(function($locationProvider) {
 //    $locationProvider.html5Mode(true);
