@@ -21,6 +21,7 @@
   </div>
 </div>
 
-<ul>
+<button ng-model="fordebug" ng-click="fordebug=!fordebug">object</button>
+<ul ng-show="fordebug">
   <li data-ng-repeat="(key, value) in detail">{{key}}: {{value}}</li>
 </ul>
