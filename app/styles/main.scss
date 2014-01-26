@@ -1,6 +1,7 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import 'sass-bootstrap/lib/bootstrap';
+@import url(http://fonts.googleapis.com/css?family=Lato);
 
 .browsehappy {
     margin: 0.2em 0;
@@ -88,4 +89,9 @@ body {
     .jumbotron {
         border-bottom: 0;
     }
+}
+
+.logo,
+.footnote {
+  font-family: 'Lato', sans-serif;
 }
