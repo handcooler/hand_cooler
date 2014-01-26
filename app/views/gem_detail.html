@@ -1,10 +1,8 @@
 <div class="container">
   <div class="gem_detail">
-    <span id="gem_name">
-      <span ng-if="detail.source_code_uri.length"><a ng-href="{{detail.source_code_uri}}">{{detail.name}}</a></span>
-      <span ng-if="!detail.source_code_uri.length">{{detail.name}}</span>
-    </span> -
+    <span id="gem_name"><a ng-href="{{detail.project_uri}}">{{detail.name}}</a></span> -
     <span id="gem_version">{{detail.version}}</span> -
+    <span id="gem_source_code"><a ng-href="{{sourceUrl}}">source</a></span> -
     <span id="gem_info">{{detail.info}}</span>
   </div>
 
