@@ -24,10 +24,19 @@ angular.module('handCoolerApp')
         $scope.readme = data;
       });
     };
+
+    $scope.fetchTags = function(url) {
+      var uri = URI(url);
+      var tagsApi = 'http://cornflower.herokuapp.com/tags/github.com/' + uri.segment(0) + '/' + uri.segment(1) + '.json';
+      $http.get(tagsApi).success(function(data) {
+        $scope.tags = data;
+      });
+    };
     var gemApi = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/gems/' + $routeParams.gemName + '.json';
     $http.get(gemApi).success(function(data) {
       $scope.detail = data;
       $scope.sourceUrl = $scope.detectRepos(data);
       $scope.fetchReadme($scope.sourceUrl);
+      $scope.fetchTags($scope.sourceUrl);
     });
   });
