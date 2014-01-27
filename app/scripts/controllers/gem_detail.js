@@ -7,6 +7,7 @@ angular.module('handCoolerApp')
 //      $scope.detail = data;
 //    });
     $scope.detectRepos = function(data) {
+      /*jshint camelcase: false */
       if(data.source_code_uri && URI(data.source_code_uri).hostname() === 'github.com') {
         return data.source_code_uri;
       } else if(data.homepage_uri && URI(data.homepage_uri).hostname() === 'github.com') {
