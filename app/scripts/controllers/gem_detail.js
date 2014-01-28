@@ -28,8 +28,8 @@ angular.module('handCoolerApp')
 
     $scope.doCompare = function(tags) {
       var uri = URI($scope.sourceUrl);
-      var compareUrl = 'https://github.com/' + uri.segment(0) + '/' + uri.segment(1) + '/compare/' + tags.base + '...' + tags.compare;
-      $window.open(compareUrl);
+      $scope.compareUrl = 'https://github.com/' + uri.segment(0) + '/' + uri.segment(1) + '/compare/' + tags.base + '...' + tags.compare;
+      $window.open($scope.compareUrl);
     };
 
     $scope.fetchTags = function(url) {
