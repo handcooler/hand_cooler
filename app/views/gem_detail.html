@@ -7,7 +7,13 @@
   </div>
 
   <div class="gem_compare">
-    base: v1.0.0 compare: v1.0.1 Compare!
+    <form ng-submit="doCompare(tags)">
+      base: <select ng-model="tags.base"
+                    ng-options="tag for tag in tags"></select>
+      compare: <select ng-model="tags.compare"
+                       ng-options="tag for tag in tags"></select>
+      <button class="btn btn-default" type="submit">Compare</button>
+    </form>
   </div>
 
   <div class="gem_readme">
