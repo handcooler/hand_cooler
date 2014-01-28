@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('handCoolerApp')
-  .controller('GemDetailCtrl', function ($scope, $http, $routeParams) {
+  .controller('GemDetailCtrl', function ($scope, $http, $routeParams, $window) {
     $scope.gemName = $routeParams.gemName;
 //    $http.get('gems/tachikoma.json').success(function(data) {
 //      $scope.detail = data;
@@ -26,11 +26,20 @@ angular.module('handCoolerApp')
       });
     };
 
+    $scope.doCompare = function(tags) {
+      var uri = URI($scope.sourceUrl);
+      var compareUrl = 'https://github.com/' + uri.segment(0) + '/' + uri.segment(1) + '/compare/' + tags.base + '...' + tags.compare;
+      $window.open(compareUrl);
+    };
+
     $scope.fetchTags = function(url) {
       var uri = URI(url);
       var tagsApi = 'http://cornflower.herokuapp.com/tags/github.com/' + uri.segment(0) + '/' + uri.segment(1) + '.json';
       $http.get(tagsApi).success(function(data) {
         $scope.tags = data;
+        //default value
+        $scope.tags.base = $scope.tags[1];
+        $scope.tags.compare = $scope.tags[0];
       });
     };
     var gemApi = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/gems/' + $routeParams.gemName + '.json';
