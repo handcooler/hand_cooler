@@ -12,8 +12,8 @@ angular.module('handCoolerApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/gem_detail.html',
+        controller: 'GemDetailCtrl'
       })
       .when('/search/:query/', {
         templateUrl: 'views/search.html',

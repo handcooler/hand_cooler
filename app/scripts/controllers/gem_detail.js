@@ -3,6 +3,12 @@
 angular.module('handCoolerApp')
   .controller('GemDetailCtrl', function ($scope, $http, $routeParams, $window) {
     $scope.gemName = $routeParams.gemName;
+    if(! $scope.gemName) {
+      $scope.siteDescription = true;
+      var myArray = ['paperclip', 'appraisal', 'tachikoma', 'omniauth', 'pundit'];
+      $scope.exampleGems = myArray;
+      $scope.gemName = myArray[Math.floor(Math.random() * myArray.length)];
+    }
 //    $http.get('gems/tachikoma.json').success(function(data) {
 //      $scope.detail = data;
 //    });
@@ -42,7 +48,7 @@ angular.module('handCoolerApp')
         $scope.tags.compare = $scope.tags[0];
       });
     };
-    var gemApi = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/gems/' + $routeParams.gemName + '.json';
+    var gemApi = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/gems/' + $scope.gemName + '.json';
     $http.get(gemApi).success(function(data) {
       $scope.detail = data;
       $scope.sourceUrl = $scope.detectRepos(data);
