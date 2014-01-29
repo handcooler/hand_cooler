@@ -1,4 +1,10 @@
 <div class="container">
+  <div class="description jumbotron" ng-show="siteDescription">
+    This is RubyHandCooler example below, the page is <a ng-href="#/gems/{{gemName}}">{{gemName}}</a>'s. Easy to get readme, Easy to access code diff. The other examples
+    <ul class="list-unstyled list-inline">
+      <li ng-repeat="name in exampleGems"><a ng-href="#/gems/{{name}}">{{name}}</a></li>
+    </ul>
+  </div>
   <div class="gem_detail">
     <span id="gem_name"><a ng-href="{{detail.project_uri}}">{{detail.name}}</a></span> -
     <span id="gem_version">{{detail.version}}</span> -
