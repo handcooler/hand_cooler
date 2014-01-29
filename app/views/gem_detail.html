@@ -1,13 +1,15 @@
 <div class="container">
   <div class="description jumbotron" ng-show="siteDescription">
-    This is RubyHandCooler example below, the page is <a ng-href="#/gems/{{gemName}}">{{gemName}}</a>'s. Easy to get readme, Easy to access code diff. The other examples
+    This is RubyHandCooler example below, the page is <a ng-href="#/gems/{{gemName}}">{{gemName}}</a>'s.
+    Easy to search rubygems, easy to check readme, easy to compare code.
+    The other examples:
     <ul class="list-unstyled list-inline">
       <li ng-repeat="name in exampleGems"><a ng-href="#/gems/{{name}}">{{name}}</a></li>
     </ul>
     <ul ng-social-buttons
         data-url="'http://sanemat.github.io/hand_cooler/'"
-        data-title="'HandCooler: Be better Rubygems.org'"
-        data-description="'Search RubyGems, read Readme.'"
+        data-title="'HandCooler: Be Better Rubygems.org'"
+        data-description="'Easy to search rubygems, easy to check readme, easy to compare code.'"
         data-image="'https://s3.amazonaws.com/cornflower1/file6691313077352.jpg'"
         class="nav navbar-nav navbar-right">
       <li>Share:</li>
