@@ -4,6 +4,19 @@
     <ul class="list-unstyled list-inline">
       <li ng-repeat="name in exampleGems"><a ng-href="#/gems/{{name}}">{{name}}</a></li>
     </ul>
+    <ul ng-social-buttons
+        data-url="'http://sanemat.github.io/hand_cooler/'"
+        data-title="'HandCooler: Be better Rubygems.org'"
+        data-description="'Search RubyGems, read Readme.'"
+        data-image="'https://s3.amazonaws.com/cornflower1/file6691313077352.jpg'"
+        class="nav navbar-nav navbar-right">
+      <li>Share:</li>
+      <li class="ng-social-facebook">Facebook</li>
+      <li class="ng-social-google-plus">Google+</li>
+      <li class="ng-social-twitter">Twitter</li>
+      <li class="ng-social-github" user="sanemat" repository="hand_cooler">GitHub</li>
+      <li class="ng-social-github-forks" user="sanemat" repository="hand_cooler">Forks</li>
+    </ul>
   </div>
   <div class="gem_detail">
     <span id="gem_name"><a ng-href="{{detail.project_uri}}">{{detail.name}}</a></span> -
