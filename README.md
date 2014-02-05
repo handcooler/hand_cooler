@@ -4,4 +4,4 @@
 
 ## Site
 
-[HandCooler](http://sanemat.github.io/hand_cooler)
+[HandCooler](http://handcooler.org/)
