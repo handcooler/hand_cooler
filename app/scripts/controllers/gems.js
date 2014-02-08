@@ -7,9 +7,15 @@ angular.module('handCoolerApp')
     $scope.doSearch = function () {
       var searchApi = new URI('http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json');
       searchApi.search({ query: $scope.query, page: $scope.pageCount });
-      $http.get(searchApi).success(function(data) {
-        $scope.gems = data;
-      });
+      $http.get(searchApi).
+        success(function(data, status) {
+          $scope.gems = data;
+          $scope.status = status;
+        }).
+        error(function(data, status) {
+          $scope.gems = data || 'Request Failed';
+          $scope.status = status;
+        });
     };
     $scope.doSearch();
   });
