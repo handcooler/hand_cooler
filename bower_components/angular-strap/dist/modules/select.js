@@ -1,8 +1,8 @@
 /**
  * angular-strap
- * @version v2.0.0-beta.4 - 2014-01-20
+ * @version v2.0.0-rc.2 - 2014-01-29
  * @link http://mgcrea.github.io/angular-strap
- * @author Olivier Louvignes <olivier@mg-crea.com>
+ * @author [object Object]
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 'use strict';
@@ -11,7 +11,7 @@ angular.module('mgcrea.ngStrap.select', [
   'mgcrea.ngStrap.helpers.parseOptions'
 ]).provider('$select', function () {
   var defaults = this.defaults = {
-      animation: 'animation-fade',
+      animation: 'am-fade',
       prefixClass: 'select',
       placement: 'bottom-left',
       template: 'select/select.tpl.html',
@@ -229,7 +229,8 @@ angular.module('mgcrea.ngStrap.select', [
         });
         var parsedOptions = $parseOptions(attr.ngOptions);
         var select = $select(element, controller, options);
-        scope.$watch(parsedOptions.$match[7], function (newValue, oldValue) {
+        var watchedOptions = parsedOptions.$match[7].replace(/\|.+/, '').trim();
+        scope.$watch(watchedOptions, function (newValue, oldValue) {
           parsedOptions.valuesFn(scope, controller).then(function (values) {
             select.update(values);
             controller.$render();
