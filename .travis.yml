@@ -6,3 +6,6 @@ before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install -f'
   - 'gem install sass compass'
+branches:
+  only:
+    - master
