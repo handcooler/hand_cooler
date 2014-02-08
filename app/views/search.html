@@ -1,7 +1,7 @@
 <div class="container">
   <div class="gems">
     Search for {{query}}, display {{gems.length}} gems.
-    <span ng-show="doesExistNext || pageCount > 1">
+    <span ng-show="doesExistPrev || doesExistNext">
       Page {{pageCount}}.
     </span>
     <div style="display: inline-block" ng-show="doesExistPrev || doesExistNext">
