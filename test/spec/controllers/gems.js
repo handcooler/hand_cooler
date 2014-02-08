@@ -11,16 +11,18 @@ describe('Controller: GemsCtrl', function () {
     ctrl;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
+  beforeEach(inject(function ($controller, $rootScope, $httpBackend, $routeParams) {
     scope = $rootScope.$new();
     controllerService = $controller;
     httpBackend = $httpBackend;
+    $routeParams.query = 'tachikoma';
   }));
 
-  it('should get 200', function(){
-    httpBackend.expectGET('/foo.json').respond({data: 'invalid'});
+  it('should adjust invalid response', function(){
+    var uri = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json?query=tachikoma&page=1';
+    httpBackend.expectGET(uri).respond(404, '');
     ctrl = controllerService('GemsCtrl', { $scope: scope });
     httpBackend.flush();
-    expect(scope.data).toBe('invalid');
+    expect(scope.gems).toBe('Request Failed');
   });
 });
