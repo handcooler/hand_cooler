@@ -6,3 +6,6 @@ before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install -f'
   - 'gem install sass compass'
+before_install:
+  - 'export DISPLAY=:99.0'
+  - 'Xvfb :99.0 -extension RANDR > /dev/null &'
