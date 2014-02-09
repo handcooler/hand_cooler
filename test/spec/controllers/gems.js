@@ -36,7 +36,7 @@ describe('Controller: GemsCtrl', function () {
     expect(scope.gems).toBe('Not Found');
   });
 
-  it('should valid response', function(){
+  it('should valid response for page1', function(){
     var uri = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json?query=tachikoma&page=1';
     var routeParams = { query: 'tachikoma' };
     httpBackend.expectGET(uri).respond(200, searchJsonQueryTachikomaPage1);
@@ -47,5 +47,18 @@ describe('Controller: GemsCtrl', function () {
     expect(scope.doesExistPrev).not.toBeTruthy();
     expect(scope.doesExistNext).not.toBeTruthy();
     expect(scope.gems).toEqual(searchJsonQueryTachikomaPage1);
+  });
+
+  it('should valid response for page1 and full', function(){
+    var uri = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json?query=formatter&page=1';
+    var routeParams = { query: 'formatter' };
+    httpBackend.expectGET(uri).respond(200, searchJsonQueryFormatterPage1);
+    ctrl = controllerService('GemsCtrl', { $scope: scope, $routeParams: routeParams });
+    httpBackend.flush();
+    expect(scope.query).toBe('formatter');
+    expect(scope.pageCount).toBe(1);
+    expect(scope.doesExistPrev).not.toBeTruthy();
+    expect(scope.doesExistNext).toBeTruthy();
+    expect(scope.gems).toEqual(searchJsonQueryFormatterPage1);
   });
 });
