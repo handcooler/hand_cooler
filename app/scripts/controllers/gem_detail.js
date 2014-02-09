@@ -9,9 +9,7 @@ angular.module('handCoolerApp')
       $scope.exampleGems = myArray;
       $scope.gemName = myArray[Math.floor(Math.random() * myArray.length)];
     }
-//    $http.get('gems/tachikoma.json').success(function(data) {
-//      $scope.detail = data;
-//    });
+
     $scope.detectRepos = function(data) {
       /*jshint camelcase: false */
       if(data.source_code_uri && URI(data.source_code_uri).hostname() === 'github.com') {
