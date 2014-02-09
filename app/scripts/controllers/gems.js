@@ -2,7 +2,7 @@
 
 angular.module('handCoolerApp')
   .controller('GemsCtrl', function ($scope, $http, $routeParams) {
-    $scope.pageCount = Number($routeParams.page) || 1;
+    $scope.pageCount = parseInt($routeParams.page, 10) || 1;
     $scope.query = $routeParams.query;
     $scope.doSearch = function () {
       var searchApi = new URI('http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json');
