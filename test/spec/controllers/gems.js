@@ -32,7 +32,7 @@ describe('Controller: GemsCtrl', function () {
     expect(scope.gems).toBe('Not Found');
   });
 
-  it('should return response', function(){
+  it('should valid response', function(){
     var uri = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json?query=tachikoma&page=1';
     var routeParams = { query: 'tachikoma' };
     httpBackend.expectGET(uri).respond(200, searchJsonQueryTachikomaPage1);
