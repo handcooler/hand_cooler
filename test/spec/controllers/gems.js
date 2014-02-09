@@ -14,7 +14,7 @@ describe('Controller: GemsCtrl', function () {
   var searchJsonQueryFormatterPage4 = [{'name':'pretty_formatter','downloads':1228,'version':'0.0.2','version_downloads':509,'platform':'ruby','authors':'Mario A. Chavez','info':'A Rails log formatter that improves the log format, using colors and adding additional information to the log.','licenses':[],'project_uri':'http://rubygems.org/gems/pretty_formatter','gem_uri':'http://rubygems.org/gems/pretty_formatter-0.0.2.gem','homepage_uri':'http://mario-chavez.decisionesinteligentes.com','wiki_uri':'','documentation_uri':'','mailing_list_uri':'','source_code_uri':'https://github.com/mariochavez/pretty_formatter','bug_tracker_uri':'','dependencies':{'development':[{'name':'sqlite3','requirements':'>= 0'}],'runtime':[{'name':'activesupport','requirements':'>= 3.2'}]}},{'name':'stopwatch_formatter','downloads':302,'version':'1.0.0','version_downloads':302,'platform':'ruby','authors':'Tamara Temple','info':'The standard RSpec documentation formatter does not display the amount of time each test took. This formatter provides that information','licenses':['MIT'],'project_uri':'http://rubygems.org/gems/stopwatch_formatter','gem_uri':'http://rubygems.org/gems/stopwatch_formatter-1.0.0.gem','homepage_uri':'http://github.com/tamouse/rspec_stopwatch_formatter','wiki_uri':null,'documentation_uri':null,'mailing_list_uri':null,'source_code_uri':null,'bug_tracker_uri':null,'dependencies':{'development':[{'name':'bundler','requirements':'~> 1.3'},{'name':'rake','requirements':'>= 0'},{'name':'rspec','requirements':'>= 0'}],'runtime':[]}}];
   var searchJsonQueryFormatterPage5 = [];
   var searchJsonQueryTachikomaPage1 = [{'name':'tachikoma','downloads':4051,'version':'4.0.3','version_downloads':145,'platform':'ruby','authors':'sanemat','info':'Interval pull requester with bundle/carton update.','licenses':['MIT'],'project_uri':'http://rubygems.org/gems/tachikoma','gem_uri':'http://rubygems.org/gems/tachikoma-4.0.3.gem','homepage_uri':'https://github.com/sanemat/tachikoma','wiki_uri':'','documentation_uri':'','mailing_list_uri':'','source_code_uri':'https://github.com/sanemat/tachikoma','bug_tracker_uri':'','dependencies':{'development':[{'name':'bundler','requirements':'~> 1.3'},{'name':'dotenv','requirements':'>= 0'},{'name':'rspec','requirements':'>= 3.0.0.beta'}],'runtime':[{'name':'json','requirements':'>= 0'},{'name':'octokit','requirements':'< 3, >= 2'},{'name':'rake','requirements':'>= 0'},{'name':'safe_yaml','requirements':'>= 0'},{'name':'thor','requirements':'>= 0'}]}}];
-//    searchJsonQueryNoGemsExistPage1 = []
+  var searchJsonQueryNoGemsExistPage1 = [];
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
@@ -99,5 +99,18 @@ describe('Controller: GemsCtrl', function () {
     expect(scope.doesExistPrev).toBeTruthy();
     expect(scope.doesExistNext).not.toBeTruthy();
     expect(scope.gems).toEqual(searchJsonQueryFormatterPage5);
+  });
+
+  it('should valid response for not exist', function(){
+    var uri = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json?query=no_gems_exist&page=1';
+    var routeParams = { query: 'no_gems_exist' };
+    httpBackend.expectGET(uri).respond(200, searchJsonQueryNoGemsExistPage1);
+    ctrl = controllerService('GemsCtrl', { $scope: scope, $routeParams: routeParams });
+    httpBackend.flush();
+    expect(scope.query).toBe('no_gems_exist');
+    expect(scope.pageCount).toBe(1);
+    expect(scope.doesExistPrev).not.toBeTruthy();
+    expect(scope.doesExistNext).not.toBeTruthy();
+    expect(scope.gems).toEqual(searchJsonQueryNoGemsExistPage1);
   });
 });
