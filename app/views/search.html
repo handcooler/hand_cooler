@@ -7,7 +7,7 @@
     <div style="display: inline-block" ng-show="doesExistPrev || doesExistNext">
       <ul>
         <li style="display: inline" ng-show="doesExistPrev"><a ng-href="#/search/{{query}}/{{pageCount - 1}}">Prev</a></li>
-        <li style="display: inline" ng-show="doesExistNext"><a ng-href="#/search/{{query}}/{{pageCount - 0 + 1}}">Next</a></li>
+        <li style="display: inline" ng-show="doesExistNext"><a ng-href="#/search/{{query}}/{{pageCount + 1}}">Next</a></li>
       </ul>
     </div>
     <ul>
