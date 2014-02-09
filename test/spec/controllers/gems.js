@@ -38,6 +38,10 @@ describe('Controller: GemsCtrl', function () {
     httpBackend.expectGET(uri).respond(200, searchJsonQueryTachikomaPage1);
     ctrl = controllerService('GemsCtrl', { $scope: scope, $routeParams: routeParams });
     httpBackend.flush();
+    expect(scope.query).toBe('tachikoma');
+    expect(scope.pageCount).toBe('1');
+    expect(scope.doesExistPrev).not.toBeTruthy();
+    expect(scope.doesExistNext).not.toBeTruthy();
     expect(scope.gems).toEqual(searchJsonQueryTachikomaPage1);
   });
 });
