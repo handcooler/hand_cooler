@@ -10,15 +10,15 @@ angular.module('handCoolerApp')
       $scope.gemName = myArray[Math.floor(Math.random() * myArray.length)];
     }
 
-    $scope.detectRepos = function(data) {
+    $scope.detectRepos = function(searchRubygemsOrg) {
       /*jshint camelcase: false */
-      if(data.source_code_uri && URI(data.source_code_uri).hostname() === 'github.com') {
-        return data.source_code_uri;
-      } else if(data.homepage_uri && URI(data.homepage_uri).hostname() === 'github.com') {
-        return data.homepage_uri;
+      if(searchRubygemsOrg.source_code_uri && URI(searchRubygemsOrg.source_code_uri).hostname() === 'github.com') {
+        return searchRubygemsOrg.source_code_uri;
+      } else if(searchRubygemsOrg.homepage_uri && URI(searchRubygemsOrg.homepage_uri).hostname() === 'github.com') {
+        return searchRubygemsOrg.homepage_uri;
       } else {
 //        search from github api?
-        return false;
+        return '';
       }
     };
 
