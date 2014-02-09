@@ -29,6 +29,10 @@ describe('Controller: GemsCtrl', function () {
     httpBackend.expectGET(uri).respond(404, 'Not Found');
     ctrl = controllerService('GemsCtrl', { $scope: scope, $routeParams: routeParams });
     httpBackend.flush();
+    expect(scope.query).toBe('formatter');
+    expect(scope.pageCount).toBe(1);
+    expect(scope.doesExistPrev).not.toBeTruthy();
+    expect(scope.doesExistNext).not.toBeTruthy();
     expect(scope.gems).toBe('Not Found');
   });
 
