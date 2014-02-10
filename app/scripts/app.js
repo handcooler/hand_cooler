@@ -7,7 +7,8 @@ angular.module('handCoolerApp', [
   'ngRoute',
   'mgcrea.ngStrap',
   'angularytics',
-  'ngSocial'
+  'ngSocial',
+  'siyfion.sfTypeahead'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -35,6 +36,11 @@ angular.module('handCoolerApp', [
     $scope.doSearch = function (query) {
       $location.path('/search/' + query);
     };
+    $scope.exampleData = {
+      name: 'accounts',
+      remote: 'http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json?query=%QUERY'
+    };
+    $scope.foo = null;
   })
   .config(function(AngularyticsProvider) {
     AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal']);

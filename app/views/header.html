@@ -13,7 +13,8 @@
       <form ng-submit="doSearch(query)">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="RubyGem Name" name="query" ng-model="query">
-          <span class="input-group-btn">
+          <input type="text" class="sfTypeahead" datasets="exampleData" ng-model="foo"></div>
+        <span class="input-group-btn">
             <button class="btn btn-default" type="submit">Search</button>
           </span>
         </div>
