@@ -36,6 +36,21 @@ angular.module('handCoolerApp', [
       $location.path('/search/' + query);
     };
   })
+  .factory('detectRepos', function(){
+    return {
+      uri: function(searchRubygemsOrg){
+        /*jshint camelcase: false */
+        if(searchRubygemsOrg.source_code_uri && URI(searchRubygemsOrg.source_code_uri).hostname() === 'github.com') {
+          return searchRubygemsOrg.source_code_uri;
+        } else if(searchRubygemsOrg.homepage_uri && URI(searchRubygemsOrg.homepage_uri).hostname() === 'github.com') {
+          return searchRubygemsOrg.homepage_uri;
+        } else {
+//        search from github api?
+          return '';
+        }
+      }
+    };
+  })
   .config(function(AngularyticsProvider) {
     AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal']);
   })
