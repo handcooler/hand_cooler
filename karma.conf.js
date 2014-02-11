@@ -20,6 +20,7 @@ module.exports = function(config) {
       'app/bower_components/angular-strap/dist/angular-strap.min.js',
       'app/bower_components/angularytics/dist/angularytics.min.js',
       'app/bower_components/angular-social/angular-social.js',
+      'app/bower_components/angular-animate/angular-animate.js',
       'app/bower_components/uri.js/src/URI.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',

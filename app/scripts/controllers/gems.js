@@ -1,9 +1,12 @@
 'use strict';
 
 angular.module('handCoolerApp')
-  .controller('GemsCtrl', function ($scope, $http, $routeParams) {
+  .controller('GemsCtrl', function ($scope, $http, $routeParams, detectRepos) {
     $scope.pageCount = parseInt($routeParams.page, 10) || 1;
     $scope.query = $routeParams.query;
+    $scope.getReposUrl = function(gem) {
+      return detectRepos.uri(gem);
+    };
     $scope.doSearch = function () {
       var searchApi = new URI('http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json');
       searchApi.search({ query: $scope.query, page: $scope.pageCount });

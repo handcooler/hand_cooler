@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('handCoolerApp')
-  .controller('GemDetailCtrl', function ($scope, $http, $routeParams, $window) {
+  .controller('GemDetailCtrl', function ($scope, $http, $routeParams, $window, detectRepos) {
     $scope.gemName = $routeParams.gemName;
     if(! $scope.gemName) {
       $scope.siteDescription = true;
@@ -9,18 +9,6 @@ angular.module('handCoolerApp')
       $scope.exampleGems = myArray;
       $scope.gemName = myArray[Math.floor(Math.random() * myArray.length)];
     }
-
-    $scope.detectRepos = function(searchRubygemsOrg) {
-      /*jshint camelcase: false */
-      if(searchRubygemsOrg.source_code_uri && URI(searchRubygemsOrg.source_code_uri).hostname() === 'github.com') {
-        return searchRubygemsOrg.source_code_uri;
-      } else if(searchRubygemsOrg.homepage_uri && URI(searchRubygemsOrg.homepage_uri).hostname() === 'github.com') {
-        return searchRubygemsOrg.homepage_uri;
-      } else {
-//        search from github api?
-        return '';
-      }
-    };
 
     $scope.fetchReadme = function(url) {
       var uri = URI(url);
@@ -49,7 +37,7 @@ angular.module('handCoolerApp')
     var gemApi = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/gems/' + $scope.gemName + '.json';
     $http.get(gemApi).success(function(data) {
       $scope.detail = data;
-      $scope.sourceUrl = $scope.detectRepos(data);
+      $scope.sourceUrl = detectRepos.uri(data);
       $scope.fetchReadme($scope.sourceUrl);
       $scope.fetchTags($scope.sourceUrl);
     });
