@@ -17,9 +17,8 @@
           <span class="gem_version">{{gem.version}}</span> -
           <span class="gem_info">{{gem.info}}</span>
         </a>
-        <span class="gem_source_code_uri">
-          <span ng-if="gem.source_code_uri.length"><a ng-href="{{gem.source_code_uri}}">code</a></span>
-          <span ng-if="!gem.source_code_uri.length">code</span>
+        <span class="gem_source_code_uri" ng-show="getReposUrl(gem)">
+          <a ng-href="{{getReposUrl(gem)}}">code</a>
         </span>
       </li>
     </ul>
