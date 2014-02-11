@@ -46,7 +46,7 @@ angular.module('handCoolerApp', [
           return searchRubygemsOrg.homepage_uri;
         } else {
 //        search from github api?
-          return '';
+          return false;
         }
       }
     };
