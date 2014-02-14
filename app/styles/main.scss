@@ -29,25 +29,30 @@ body {
   color: #600090;
 }
 
-.title {
+#gems .title {
   line-height: 1.5em;
   font-size: 123%;
   font-weight: 200;
 }
 
-.standing {
+#gems .standing {
   color: #009030;
   font-style: normal;
   word-wrap: break-word;
   line-height: 1.4em;
 }
 
-.standing > ul {
+#gems .standing > ul {
   padding-left: 0;
 }
 
-.standing > ul li {
+#gems .standing > ul li {
   display: inline;
+}
+
+#gems > ul {
+  list-style-type: none;
+  padding-left: 0;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
