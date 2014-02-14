@@ -42,7 +42,7 @@ body {
   line-height: 1.4em;
 }
 
-#gems .standing > ul li {
+#gems .standing > ul li, #gems .extra > ul li, #gems .pager > ul li {
   display: inline;
 }
 
@@ -64,8 +64,12 @@ body {
   color: #404040;
 }
 
-#gems .one_gem {
+#gems li.one_gem {
   padding: 0 0 10px;
+}
+
+#gems .pager {
+  display: inline-block;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */

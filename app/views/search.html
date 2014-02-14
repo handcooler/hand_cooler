@@ -20,11 +20,11 @@
           </p>
         </div>
         <div class="extra">
-          <ul style="padding-left: 0;">
-            <li class="gem rubygems" ng-show="gem.project_uri" style="display: inline;"><a ng-href="{{gem.project_uri}}">rubygems</a></li>
-            <li class="gem repos" ng-show="getReposUrl(gem)" style="display: inline;"><a ng-href="{{getReposUrl(gem)}}">code</a></li>
-            <li class="gem all_download" ng-show="gem.downloads" style="display: inline;">all: {{gem.downloads}}</li>
-            <li class="gem version_download" ng-show="gem.version_downloads" style="display: inline;">version: {{gem.version_downloads}}</li>
+          <ul>
+            <li class="gem rubygems" ng-show="gem.project_uri"><a ng-href="{{gem.project_uri}}">rubygems</a></li>
+            <li class="gem repos" ng-show="getReposUrl(gem)"><a ng-href="{{getReposUrl(gem)}}">code</a></li>
+            <li class="gem all_download" ng-show="gem.downloads">all: {{gem.downloads}}</li>
+            <li class="gem version_download" ng-show="gem.version_downloads">version: {{gem.version_downloads}}</li>
           </ul>
         </div>
       </li>
@@ -33,10 +33,10 @@
     <span ng-show="doesExistPrev || doesExistNext">
       Page {{pageCount}}.
     </span>
-    <div style="display: inline-block" ng-show="doesExistPrev || doesExistNext">
+    <div class="pager" ng-show="doesExistPrev || doesExistNext">
       <ul>
-        <li style="display: inline" ng-show="doesExistPrev"><a ng-href="#/search/{{query}}/{{pageCount - 1}}">Prev</a></li>
-        <li style="display: inline" ng-show="doesExistNext"><a ng-href="#/search/{{query}}/{{pageCount + 1}}">Next</a></li>
+        <li ng-show="doesExistPrev"><a ng-href="#/search/{{query}}/{{pageCount - 1}}">Prev</a></li>
+        <li ng-show="doesExistNext"><a ng-href="#/search/{{query}}/{{pageCount + 1}}">Next</a></li>
       </ul>
     </div>
   </div>
