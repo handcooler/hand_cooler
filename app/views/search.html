@@ -6,7 +6,12 @@
         <a ng-href="#/gems/{{gem.name}}">
           <span class="gem_name">{{gem.name}}</span>
         </a>
-        - <span class="gem_version">{{gem.version}}</span>
+        </div>
+        <div class="standing">
+          <ul style="padding-left: 0;">
+            <li class="gem version" ng-show="gem.version" style="display: inline;">{{gem.version}}</li>
+            <li class="gem authors" ng-show="gem.authors" style="display: inline;">{{gem.authors}}</li>
+          </ul>
         </div>
         <div class="description">
           <span class="gem_info" title="{{gem.info}}" bs-tooltip>
@@ -19,7 +24,6 @@
             <li class="gem rubygems" ng-show="gem.project_uri" style="display: inline;"><a ng-href="{{gem.project_uri}}">rubygems</a></li>
             <li class="gem repos" ng-show="getReposUrl(gem)" style="display: inline;"><a ng-href="{{getReposUrl(gem)}}">code</a></li>
             <li class="gem download" ng-show="gem.downloads && gem.version_downloads" style="display: inline;">{{gem.downloads}}({{gem.version_downloads}})</li>
-            <li class="gem authors" ng-show="gem.authors" style="display: inline;">{{gem.authors}}</li>
           </ul>
         </div>
       </li>
