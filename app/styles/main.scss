@@ -35,6 +35,21 @@ body {
   font-weight: 200;
 }
 
+.standing {
+  color: #009030;
+  font-style: normal;
+  word-wrap: break-word;
+  line-height: 1.4em;
+}
+
+.standing > ul {
+  padding-left: 0;
+}
+
+.standing > ul li {
+  display: inline;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
