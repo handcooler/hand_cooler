@@ -9,7 +9,10 @@
         - <span class="gem_version">{{gem.version}}</span>
         </div>
         <div class="description">
-          <span class="gem_info" title="{{gem.info}}" bs-tooltip>{{gem.info}}</span>
+          <span class="gem_info" title="{{gem.info}}" bs-tooltip>
+            {{gem.info | limitTo: 300}}
+            <span ng-show="gem.info.length >= 300">...</span>
+          </span>
         </div>
         <div class="extra">
           <ul style="padding-left: 0;">
