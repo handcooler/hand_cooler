@@ -1,27 +1,44 @@
 <div class="container">
-  <div class="gems">
+  <div id="gems">
+    <ul>
+      <li class="one_gem" ng-repeat="gem in gems">
+        <div class="title">
+        <a ng-href="#/gems/{{gem.name}}">
+          <span class="gem name">{{gem.name}}</span>
+        </a>
+        </div>
+        <div class="standing">
+          <ul>
+            <li class="gem version" ng-show="gem.version">{{gem.version}}</li>
+            <li class="gem authors" ng-show="gem.authors">{{gem.authors}}</li>
+          </ul>
+        </div>
+        <div class="description">
+          <p class="gem_info" title="{{gem.info}}" bs-tooltip>
+            {{gem.info | limitTo: 300}}
+            <span ng-show="gem.info.length >= 300">...</span>
+          </p>
+        </div>
+        <div class="extra">
+          <ul>
+            <li class="gem rubygems" ng-show="gem.project_uri"><a ng-href="{{gem.project_uri}}">rubygems</a></li>
+            <li class="gem repos" ng-show="getReposUrl(gem)"><a ng-href="{{getReposUrl(gem)}}">code</a></li>
+            <li class="gem all_download" ng-show="gem.downloads">all: {{gem.downloads}}</li>
+            <li class="gem version_download" ng-show="gem.version_downloads">version: {{gem.version_downloads}}</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
     Search for {{query}}, display {{gems.length}} gems.
     <span ng-show="doesExistPrev || doesExistNext">
       Page {{pageCount}}.
     </span>
-    <div style="display: inline-block" ng-show="doesExistPrev || doesExistNext">
+    <div class="pager" ng-show="doesExistPrev || doesExistNext">
       <ul>
-        <li style="display: inline" ng-show="doesExistPrev"><a ng-href="#/search/{{query}}/{{pageCount - 1}}">Prev</a></li>
-        <li style="display: inline" ng-show="doesExistNext"><a ng-href="#/search/{{query}}/{{pageCount + 1}}">Next</a></li>
+        <li ng-show="doesExistPrev"><a ng-href="#/search/{{query}}/{{pageCount - 1}}">Prev</a></li>
+        <li ng-show="doesExistNext"><a ng-href="#/search/{{query}}/{{pageCount + 1}}">Next</a></li>
       </ul>
     </div>
-    <ul>
-      <li ng-repeat="gem in gems">
-        <a ng-href="#/gems/{{gem.name}}">
-          <span class="gem_name">{{gem.name}}</span> -
-          <span class="gem_version">{{gem.version}}</span> -
-          <span class="gem_info">{{gem.info}}</span>
-        </a>
-        <span class="gem_source_code_uri" ng-show="getReposUrl(gem)">
-          <a ng-href="{{getReposUrl(gem)}}">code</a>
-        </span>
-      </li>
-    </ul>
   </div>
 </div>
 
