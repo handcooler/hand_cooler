@@ -1,7 +1,7 @@
 <div class="container">
   <div id="gems">
     <ul>
-      <li ng-repeat="gem in gems">
+      <li class="one_gem" ng-repeat="gem in gems">
         <div class="title">
         <a ng-href="#/gems/{{gem.name}}">
           <span class="gem name">{{gem.name}}</span>
@@ -23,7 +23,8 @@
           <ul style="padding-left: 0;">
             <li class="gem rubygems" ng-show="gem.project_uri" style="display: inline;"><a ng-href="{{gem.project_uri}}">rubygems</a></li>
             <li class="gem repos" ng-show="getReposUrl(gem)" style="display: inline;"><a ng-href="{{getReposUrl(gem)}}">code</a></li>
-            <li class="gem download" ng-show="gem.downloads && gem.version_downloads" style="display: inline;">{{gem.downloads}}({{gem.version_downloads}})</li>
+            <li class="gem all_download" ng-show="gem.downloads" style="display: inline;">all: {{gem.downloads}}</li>
+            <li class="gem version_download" ng-show="gem.version_downloads" style="display: inline;">version: {{gem.version_downloads}}</li>
           </ul>
         </div>
       </li>
