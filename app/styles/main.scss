@@ -42,16 +42,16 @@ body {
   line-height: 1.4em;
 }
 
-#gems .standing > ul {
-  padding-left: 0;
-}
-
 #gems .standing > ul li {
   display: inline;
 }
 
 #gems > ul {
   list-style-type: none;
+  padding-left: 0;
+}
+
+#gems ul {
   padding-left: 0;
 }
 
