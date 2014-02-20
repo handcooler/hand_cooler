@@ -8,7 +8,7 @@ angular.module('handCoolerApp')
       return detectRepos.uri(gem);
     };
     $scope.doSearch = function () {
-      var searchApi = new URI('http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json');
+      var searchApi = new URI('http://api.handcooler.org/rubygems.org/api/v1/search.json');
       searchApi.search({ query: $scope.query, page: $scope.pageCount });
       $http.get(searchApi).
         success(function(data, status) {
