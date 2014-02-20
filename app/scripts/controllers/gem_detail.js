@@ -12,7 +12,7 @@ angular.module('handCoolerApp')
 
     $scope.fetchReadme = function(url) {
       var uri = URI(url);
-      var readmeApi = 'http://cornflower.herokuapp.com/readme/github.com/' + uri.segment(0) + '/' + uri.segment(1);
+      var readmeApi = 'http://api.handcooler.org/readme/github.com/' + uri.segment(0) + '/' + uri.segment(1);
       $http.get(readmeApi).success(function(data) {
         $scope.readme = data;
       });
@@ -26,7 +26,7 @@ angular.module('handCoolerApp')
 
     $scope.fetchTags = function(url) {
       var uri = URI(url);
-      var tagsApi = 'http://cornflower.herokuapp.com/tags/github.com/' + uri.segment(0) + '/' + uri.segment(1) + '.json';
+      var tagsApi = 'http://api.handcooler.org/tags/github.com/' + uri.segment(0) + '/' + uri.segment(1) + '.json';
       $http.get(tagsApi).success(function(data) {
         $scope.tags = data;
         //default value
@@ -34,7 +34,7 @@ angular.module('handCoolerApp')
         $scope.tags.compare = $scope.tags[0];
       });
     };
-    var gemApi = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/gems/' + $scope.gemName + '.json';
+    var gemApi = 'http://api.handcooler.org/rubygems.org/api/v1/gems/' + $scope.gemName + '.json';
     $http.get(gemApi).success(function(data) {
       $scope.detail = data;
       $scope.sourceUrl = detectRepos.uri(data);

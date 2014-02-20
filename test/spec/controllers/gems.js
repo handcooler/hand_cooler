@@ -24,7 +24,7 @@ describe('Controller: GemsCtrl', function () {
   }));
 
   it('should adjust invalid response', function(){
-    var uri = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json?query=formatter&page=1';
+    var uri = 'http://api.handcooler.org/rubygems.org/api/v1/search.json?query=formatter&page=1';
     var routeParams = { query: 'formatter' };
     httpBackend.expectGET(uri).respond(404, 'Not Found');
     ctrl = controllerService('GemsCtrl', { $scope: scope, $routeParams: routeParams });
@@ -37,7 +37,7 @@ describe('Controller: GemsCtrl', function () {
   });
 
   it('should valid response for page1', function(){
-    var uri = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json?query=tachikoma&page=1';
+    var uri = 'http://api.handcooler.org/rubygems.org/api/v1/search.json?query=tachikoma&page=1';
     var routeParams = { query: 'tachikoma' };
     httpBackend.expectGET(uri).respond(200, searchJsonQueryTachikomaPage1);
     ctrl = controllerService('GemsCtrl', { $scope: scope, $routeParams: routeParams });
@@ -50,7 +50,7 @@ describe('Controller: GemsCtrl', function () {
   });
 
   it('should valid response for page 1 and full', function(){
-    var uri = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json?query=formatter&page=1';
+    var uri = 'http://api.handcooler.org/rubygems.org/api/v1/search.json?query=formatter&page=1';
     var routeParams = { query: 'formatter' };
     httpBackend.expectGET(uri).respond(200, searchJsonQueryFormatterPage1);
     ctrl = controllerService('GemsCtrl', { $scope: scope, $routeParams: routeParams });
@@ -63,7 +63,7 @@ describe('Controller: GemsCtrl', function () {
   });
 
   it('should valid response for page 2 and full', function(){
-    var uri = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json?query=formatter&page=2';
+    var uri = 'http://api.handcooler.org/rubygems.org/api/v1/search.json?query=formatter&page=2';
     var routeParams = { query: 'formatter', page: '2' };
     httpBackend.expectGET(uri).respond(200, searchJsonQueryFormatterPage2);
     ctrl = controllerService('GemsCtrl', { $scope: scope, $routeParams: routeParams });
@@ -76,7 +76,7 @@ describe('Controller: GemsCtrl', function () {
   });
 
   it('should valid response for page 4 and not full', function(){
-    var uri = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json?query=formatter&page=4';
+    var uri = 'http://api.handcooler.org/rubygems.org/api/v1/search.json?query=formatter&page=4';
     var routeParams = { query: 'formatter', page: '4' };
     httpBackend.expectGET(uri).respond(200, searchJsonQueryFormatterPage4);
     ctrl = controllerService('GemsCtrl', { $scope: scope, $routeParams: routeParams });
@@ -89,7 +89,7 @@ describe('Controller: GemsCtrl', function () {
   });
 
   it('should valid response for page 5 after end', function(){
-    var uri = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json?query=formatter&page=5';
+    var uri = 'http://api.handcooler.org/rubygems.org/api/v1/search.json?query=formatter&page=5';
     var routeParams = { query: 'formatter', page: '5' };
     httpBackend.expectGET(uri).respond(200, searchJsonQueryFormatterPage5);
     ctrl = controllerService('GemsCtrl', { $scope: scope, $routeParams: routeParams });
@@ -102,7 +102,7 @@ describe('Controller: GemsCtrl', function () {
   });
 
   it('should valid response for not exist', function(){
-    var uri = 'http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json?query=no_gems_exist&page=1';
+    var uri = 'http://api.handcooler.org/rubygems.org/api/v1/search.json?query=no_gems_exist&page=1';
     var routeParams = { query: 'no_gems_exist' };
     httpBackend.expectGET(uri).respond(200, searchJsonQueryNoGemsExistPage1);
     ctrl = controllerService('GemsCtrl', { $scope: scope, $routeParams: routeParams });
