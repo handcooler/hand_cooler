@@ -17,7 +17,9 @@ angular.module('mgcrea.ngStrap.select', ['mgcrea.ngStrap.tooltip', 'mgcrea.ngStr
       multiple: false,
       sort: true,
       caretHtml: '&nbsp;<span class="caret"></span>',
-      placeholder: 'Choose among the following...'
+      placeholder: 'Choose among the following...',
+      maxLength: 3,
+      maxLengthHtml: 'selected'
     };
 
     this.$get = function($window, $document, $rootScope, $tooltip) {
@@ -141,16 +143,6 @@ angular.module('mgcrea.ngStrap.select', ['mgcrea.ngStrap.tooltip', 'mgcrea.ngStr
           return i;
         };
 
-        $select.$onElementMouseDown = function(evt) {
-          evt.preventDefault();
-          evt.stopPropagation();
-          if($select.$isShown) {
-            element[0].blur();
-          } else {
-            element[0].focus();
-          }
-        };
-
         $select.$onMouseDown = function(evt) {
           // Prevent blur on mousedown on .dropdown-menu
           evt.preventDefault();
@@ -180,18 +172,6 @@ angular.module('mgcrea.ngStrap.select', ['mgcrea.ngStrap.tooltip', 'mgcrea.ngStr
         };
 
         // Overrides
-
-        var _init = $select.init;
-        $select.init = function() {
-          _init();
-          element.on(isTouch ? 'touchstart' : 'mousedown', $select.$onElementMouseDown);
-        };
-
-        var _destroy = $select.destroy;
-        $select.destroy = function() {
-          _destroy();
-          element.off(isTouch ? 'touchstart' : 'mousedown', $select.$onElementMouseDown);
-        };
 
         var _show = $select.show;
         $select.show = function() {
@@ -238,7 +218,7 @@ angular.module('mgcrea.ngStrap.select', ['mgcrea.ngStrap.tooltip', 'mgcrea.ngStr
 
         // Directive options
         var options = {scope: scope};
-        angular.forEach(['placement', 'container', 'delay', 'trigger', 'keyboard', 'html', 'animation', 'template', 'placeholder', 'multiple'], function(key) {
+        angular.forEach(['placement', 'container', 'delay', 'trigger', 'keyboard', 'html', 'animation', 'template', 'placeholder', 'multiple', 'maxLength', 'maxLengthHtml'], function(key) {
           if(angular.isDefined(attr[key])) options[key] = attr[key];
         });
 
@@ -281,7 +261,12 @@ angular.module('mgcrea.ngStrap.select', ['mgcrea.ngStrap.tooltip', 'mgcrea.ngStr
             selected = controller.$modelValue.map(function(value) {
               index = select.$getIndex(value);
               return angular.isDefined(index) ? select.$scope.$matches[index].label : false;
-            }).filter(angular.isDefined).join(', ');
+            }).filter(angular.isDefined);
+            if(selected.length > (options.maxLength || defaults.maxLength)) {
+              selected = selected.length + ' ' + (options.maxLengthHtml || defaults.maxLengthHtml);
+            } else {
+              selected = selected.join(', ');
+            }
           } else {
             index = select.$getIndex(controller.$modelValue);
             selected = angular.isDefined(index) ? select.$scope.$matches[index].label : false;

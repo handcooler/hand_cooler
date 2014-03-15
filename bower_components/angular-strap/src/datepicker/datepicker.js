@@ -18,6 +18,7 @@ angular.module('mgcrea.ngStrap.datepicker', ['mgcrea.ngStrap.helpers.dateParser'
       useNative: false,
       dateType: 'date',
       dateFormat: 'shortDate',
+      strictFormat: false,
       autoclose: false,
       minDate: -Infinity,
       maxDate: +Infinity,
@@ -233,7 +234,7 @@ angular.module('mgcrea.ngStrap.datepicker', ['mgcrea.ngStrap.helpers.dateParser'
 
         // Directive options
         var options = {scope: scope, controller: controller};
-        angular.forEach(['placement', 'container', 'delay', 'trigger', 'keyboard', 'html', 'animation', 'template', 'autoclose', 'dateType', 'dateFormat', 'startWeek', 'useNative', 'lang', 'startView', 'minView'], function(key) {
+        angular.forEach(['placement', 'container', 'delay', 'trigger', 'keyboard', 'html', 'animation', 'template', 'autoclose', 'dateType', 'dateFormat', 'strictFormat', 'startWeek', 'useNative', 'lang', 'startView', 'minView'], function(key) {
           if(angular.isDefined(attr[key])) options[key] = attr[key];
         });
 
@@ -266,7 +267,7 @@ angular.module('mgcrea.ngStrap.datepicker', ['mgcrea.ngStrap.helpers.dateParser'
           datepicker.update(controller.$dateValue);
         }, true);
 
-        var dateParser = $dateParser({format: options.dateFormat, lang: options.lang});
+        var dateParser = $dateParser({format: options.dateFormat, lang: options.lang, strict: options.strictFormat});
 
         // viewValue -> $parsers -> modelValue
         controller.$parsers.unshift(function(viewValue) {
@@ -292,13 +293,14 @@ angular.module('mgcrea.ngStrap.datepicker', ['mgcrea.ngStrap.helpers.dateParser'
           } else if(options.dateType === 'iso') {
             return controller.$dateValue.toISOString();
           } else {
-            return controller.$dateValue;
+            return new Date(controller.$dateValue);
           }
         });
 
         // modelValue -> $formatters -> viewValue
         controller.$formatters.push(function(modelValue) {
           // console.warn('$formatter("%s"): modelValue=%o (%o)', element.attr('ng-model'), modelValue, typeof modelValue);
+          if(angular.isUndefined(modelValue) || modelValue === null) return;
           var date = angular.isDate(modelValue) ? modelValue : new Date(modelValue);
           // Setup default value?
           // if(isNaN(date.getTime())) {
@@ -312,7 +314,7 @@ angular.module('mgcrea.ngStrap.datepicker', ['mgcrea.ngStrap.helpers.dateParser'
         // viewValue -> element
         controller.$render = function() {
           // console.warn('$render("%s"): viewValue=%o', element.attr('ng-model'), controller.$viewValue);
-          element.val(isNaN(controller.$dateValue.getTime()) ? '' : dateFilter(controller.$dateValue, options.dateFormat));
+          element.val(!controller.$dateValue || isNaN(controller.$dateValue.getTime()) ? '' : dateFilter(controller.$dateValue, options.dateFormat));
         };
 
         // Garbage collection
@@ -373,7 +375,7 @@ angular.module('mgcrea.ngStrap.datepicker', ['mgcrea.ngStrap.helpers.dateParser'
             },
             build: function() {
               var firstDayOfMonth = new Date(viewDate.year, viewDate.month, 1);
-              var firstDate = new Date(+firstDayOfMonth - (firstDayOfMonth.getDay() + options.startWeek) * 864e5);
+              var firstDate = new Date(+firstDayOfMonth - (firstDayOfMonth.getDay() - options.startWeek) * 864e5);
               var days = [], day;
               for(var i = 0; i < 42; i++) { // < 7 * 6
                 day = new Date(firstDate.getFullYear(), firstDate.getMonth(), firstDate.getDate() + i);

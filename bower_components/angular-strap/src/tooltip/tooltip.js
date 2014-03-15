@@ -59,8 +59,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['ngAnimate', 'mgcrea.ngStrap.helpers.d
             $tooltip.toggle();
           });
         };
-
-        $tooltip.$isShown = false;
+        $tooltip.$isShown = scope.$isShown = false;
 
         // Private vars
         var timeout, hoverState;
@@ -118,6 +117,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['ngAnimate', 'mgcrea.ngStrap.helpers.d
             } else if(trigger !== 'manual') {
               element.on(trigger === 'hover' ? 'mouseenter' : 'focus', $tooltip.enter);
               element.on(trigger === 'hover' ? 'mouseleave' : 'blur', $tooltip.leave);
+              trigger !== 'hover' && element.on(isTouch ? 'touchstart' : 'mousedown', $tooltip.$onFocusElementMouseDown);
             }
           });
 
@@ -141,6 +141,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['ngAnimate', 'mgcrea.ngStrap.helpers.d
             } else if(trigger !== 'manual') {
               element.off(trigger === 'hover' ? 'mouseenter' : 'focus', $tooltip.enter);
               element.off(trigger === 'hover' ? 'mouseleave' : 'blur', $tooltip.leave);
+              trigger !== 'hover' && element.off(isTouch ? 'touchstart' : 'mousedown', $tooltip.$onFocusElementMouseDown);
             }
           }
 
@@ -188,7 +189,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['ngAnimate', 'mgcrea.ngStrap.helpers.d
           if(options.type) tipElement.addClass(options.prefixClass + '-' + options.type);
 
           $animate.enter(tipElement, parent, after, function() {});
-          $tooltip.$isShown = true;
+          $tooltip.$isShown = scope.$isShown = true;
           scope.$$phase || scope.$digest();
           $$animateReflow($tooltip.$applyPlacement);
 
@@ -226,8 +227,8 @@ angular.module('mgcrea.ngStrap.tooltip', ['ngAnimate', 'mgcrea.ngStrap.helpers.d
           $animate.leave(tipElement, function() {
             tipElement = null;
           });
+          $tooltip.$isShown = scope.$isShown = false;
           scope.$$phase || scope.$digest();
-          $tooltip.$isShown = false;
 
           // Unbind events
           if(options.keyboard) {
@@ -277,6 +278,13 @@ angular.module('mgcrea.ngStrap.tooltip', ['ngAnimate', 'mgcrea.ngStrap.helpers.d
 
         $tooltip.$onFocusKeyUp = function(evt) {
           evt.which === 27 && element[0].blur();
+        };
+
+        $tooltip.$onFocusElementMouseDown = function(evt) {
+          evt.preventDefault();
+          evt.stopPropagation();
+          // Some browsers do not auto-focus buttons (eg. Safari)
+          $tooltip.$isShown ? element[0].blur() : element[0].focus();
         };
 
         // Private methods
@@ -389,7 +397,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['ngAnimate', 'mgcrea.ngStrap.helpers.d
         // Observe scope attributes for change
         angular.forEach(['title'], function(key) {
           attr[key] && attr.$observe(key, function(newValue, oldValue) {
-            scope[key] = $sce.getTrustedHtml(newValue);
+            scope[key] = $sce.trustAsHtml(newValue);
             angular.isDefined(oldValue) && $$animateReflow(function() {
               tooltip && tooltip.$applyPlacement();
             });

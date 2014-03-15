@@ -206,6 +206,7 @@ If you don't like URI.js, you may like one of the following libraries. (If yours
 
 * [TLD.js](https://github.com/oncletom/tld.js) - second level domain names
 * [Public Suffix](http://mxr.mozilla.org/mozilla-central/source/netwerk/dns/effective_tld_names.dat?raw=1) - second level domain names
+* [uri-collection](https://github.com/scivey/uri-collection) - underscore based utility for working with many URIs
 
 ## Authors ##
 
@@ -225,6 +226,11 @@ URI.js is published under the [MIT license](http://www.opensource.org/licenses/m
 
 
 ## Changelog ##
+
+### 1.12.1 (March 8th 2014) ###
+
+* fixing [`.encodeQuery()`](http://medialize.github.io/URI.js/docs.html#static-encodeQuery) and [`.decodeQuery()`](http://medialize.github.io/URI.js/docs.html#static-decodeQuery) to respect [`URI.escapeQuerySpace`](http://medialize.github.io/URI.js/docs.html#setting-escapeQuerySpace) - ([Issue #137](https://github.com/medialize/URI.js/issues/137))
+* fixing fragment plugins to return URI for simpler loading - ([Issue #139](https://github.com/medialize/URI.js/issues/139))
 
 ### 1.12.0 (January 23rd 2014) ###
 

@@ -40,11 +40,9 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.helpers.dimensions'])
         }
 
         // Support scope as string options
-        if(!options.scope) {
-          forEach(['title', 'content'], function(key) {
-            if(options[key]) scope[key] = options[key];
-          });
-        }
+        forEach(['title', 'content'], function(key) {
+          if(options[key]) scope[key] = options[key];
+        });
 
         // Provide scope helpers
         scope.$hide = function() {
@@ -149,9 +147,9 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.helpers.dimensions'])
           });
 
           bodyElement.addClass(options.prefixClass + '-open');
-          // if(options.animation) {
-          //   bodyElement.addClass(options.prefixClass + '-with-' + options.animation);
-          // }
+          if(options.animation) {
+            bodyElement.addClass(options.prefixClass + '-with-' + options.animation);
+          }
 
           // Bind events
           if(options.backdrop) {
@@ -168,9 +166,9 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.helpers.dimensions'])
 
           $animate.leave(modalElement, function() {
             bodyElement.removeClass(options.prefixClass + '-open');
-            // if(options.animation) {
-            //   bodyElement.addClass(options.prefixClass + '-with-' + options.animation);
-            // }
+            if(options.animation) {
+              bodyElement.addClass(options.prefixClass + '-with-' + options.animation);
+            }
           });
           if(options.backdrop) {
             $animate.leave(backdropElement, function() {});
@@ -257,7 +255,7 @@ angular.module('mgcrea.ngStrap.modal', ['mgcrea.ngStrap.helpers.dimensions'])
         // Support scope as data-attrs
         angular.forEach(['title', 'content'], function(key) {
           attr[key] && attr.$observe(key, function(newValue, oldValue) {
-            scope[key] = $sce.getTrustedHtml(newValue);
+            scope[key] = $sce.trustAsHtml(newValue);
           });
         });
 

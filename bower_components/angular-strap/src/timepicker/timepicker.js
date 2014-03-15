@@ -295,7 +295,7 @@ angular.module('mgcrea.ngStrap.timepicker', ['mgcrea.ngStrap.helpers.dateParser'
         });
 
         // Initialize timepicker
-        if(isNative && options.useNative) options.timeFormat = 'HH:mm';
+        if(isNative && (options.useNative || defaults.useNative)) options.timeFormat = 'HH:mm';
         var timepicker = $timepicker(element, controller, options);
         options = timepicker.$options;
 
@@ -354,7 +354,7 @@ angular.module('mgcrea.ngStrap.timepicker', ['mgcrea.ngStrap.helpers.dateParser'
         // modelValue -> $formatters -> viewValue
         controller.$formatters.push(function(modelValue) {
           // console.warn('$formatter("%s"): modelValue=%o (%o)', element.attr('ng-model'), modelValue, typeof modelValue);
-          var date = angular.isDate(modelValue) ? modelValue : new Date(modelValue);
+          var date = options.timeType === 'string' ? dateParser.parse(modelValue, controller.$dateValue) : new Date(modelValue);
           // Setup default value: next hour?
           // if(isNaN(date.getTime())) date = new Date(new Date().setMinutes(0) + 36e5);
           controller.$dateValue = date;
