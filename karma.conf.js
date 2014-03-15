@@ -60,6 +60,9 @@ module.exports = function(config) {
 
     // Add plugins like this
     // https://github.com/lazd/gulp-karma/issues/4
-    plugins: ['karma-jasmine']
+    plugins: [
+      'karma-jasmine',
+      'karma-phantomjs-launcher'
+    ]
   });
 };
