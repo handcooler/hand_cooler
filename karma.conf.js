@@ -56,6 +56,10 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false
+    singleRun: false,
+
+    // Add plugins like this
+    // https://github.com/lazd/gulp-karma/issues/4
+    plugins: ['karma-jasmine']
   });
 };
