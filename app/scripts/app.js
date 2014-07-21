@@ -31,9 +31,19 @@ angular.module('handCoolerApp', [
         redirectTo: '/'
       });
   })
-  .controller('HeaderCtrl', function ($scope, $location) {
+  .controller('HeaderCtrl', function ($scope, $location, $http) {
     $scope.doSearch = function (query) {
       $location.path('/search/' + query);
+    };
+
+    $scope.selectedAddress = '';
+    $scope.getAddress = function(viewValue) {
+      var searchApi = new URI('http://cornflower.herokuapp.com/rubygems.org/api/v1/search.json');
+      searchApi.search({ query: viewValue, page: 1 });
+      return $http.get(searchApi)
+        .then(function(res) {
+          return res.data;
+        });
     };
   })
   .factory('detectRepos', function(){

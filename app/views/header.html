@@ -13,6 +13,7 @@
       <form ng-submit="doSearch(query)">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="RubyGem Name" name="query" ng-model="query">
+          <input type="text" class="form-control" ng-model="selectedAddress" data-animation="am-flip-x" ng-options="gem.name for gem in getAddress($viewValue)" placeholder="Enter rubygems name" data-delay="100" bs-typeahead>
           <span class="input-group-btn">
             <button class="btn btn-default" type="submit">Search</button>
           </span>
